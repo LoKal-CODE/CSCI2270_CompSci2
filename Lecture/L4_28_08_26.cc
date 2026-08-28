@@ -7,5 +7,3 @@ Topics:
         - Pass-by-pointer
         - Pass-by-array
 */
-
-// nvm. we did more review
