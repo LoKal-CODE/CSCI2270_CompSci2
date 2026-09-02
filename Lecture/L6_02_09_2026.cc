@@ -16,8 +16,6 @@ void myPBV( int x )
 } 
 // does not update the variable value in the global scope, only the local function scope. 'int x' is a copy of the main parameter passed, not a link to the actual variable.
 
-// pass-by-reference
-
 
 // pass-by-pointer
 void myPBP( int* x )
