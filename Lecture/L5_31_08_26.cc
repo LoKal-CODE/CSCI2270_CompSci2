@@ -14,30 +14,27 @@ Topics:
 int main()
 {
 
-    int* p; // declares an integer pointer named p. an address is a non-zero integer
-    double* ptr;
-    char* p0;
+    int* p;
+    int x;
 
-    // the above will all store addresses, but the data type of the pointer must match the type of data the address points to
-
-    int x = 13;
-
-    p = &x; // p stores the address of x. & is the address-of-operator
+    p = &x;
 
     double y;
+    double* ptr;
+    
     ptr = &y;
 
-    *p = 7; //de-referencing the pointer to access the value at the address
-
-    p = nullptr; // write 0 to pointer p
-
-    int* q;
-    *q = 9;
-
+    *p = 7;
     int z;
-    z = *q;
+    z = *p;
 
-    std::cout << *q << std::endl;
-    std::cout << q << std::endl;
+    cout << *p << endl;
+    cout << x << endl;
+    cout << z << endl;
+    
+    cout << p << endl;
+    cout << &p << endl;
+
+    int* p2 = p; // p2 points to the same place p points to
 
 }
