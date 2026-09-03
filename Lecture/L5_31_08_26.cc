@@ -8,6 +8,7 @@ Topics:
         - Pass-by-array
 */
 #include <iostream>
+using namespace std;
 
 // a pointer stores an address, not a "value" like a regular int, or char...
 
