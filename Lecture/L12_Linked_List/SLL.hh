@@ -17,8 +17,8 @@ class SLL {
         Node* head;
 
     public:
-        SLL();
-        ~SLL();
+        SLL(); // constructor
+        ~SLL(); // destructor, needed when working with dynamic memory
         Node* search(string sKey);
         void displayList();
         void insert(string afterMe, string newValue);
