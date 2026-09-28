@@ -66,6 +66,22 @@ void printReverse( Node* curr )
     
 }
 
+// recursive append
+Node* append( Node* curr, int val )
+{
+    if (curr == nullptr)
+    {
+        Node* newNode = new Node;
+        newNode->key = val;
+        newNode->next = nullptr;
+        return newNode;
+    }
+    
+    curr->next = append(curr->next, val);
+    return curr;
+    
+}
+
 int main( int argc, char* argv[] ) 
 {
 
