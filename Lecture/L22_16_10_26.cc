@@ -73,3 +73,50 @@ void BST::insert(int data)
 {
     root = insertHelper(root, data);
 }
+
+Node* BST::searchKeyHelper(Node* currNode, int key)
+{
+    if ( (currNode == nullptr) || (currNode->key == key) ) // have to do the nullptr check first to ensure that you dont accidentally try and de-ref nullptr to check node->key. Called a short circuit
+    {
+        return currNode;
+    }
+    if (key < currNode->key)
+    {
+        return searchKeyHelper(currNode->left, key);
+    }
+    else
+    {
+        return searchKeyHelper(currNode->right, key);
+    }
+}
+
+bool BST::searchKey(int key)
+{
+    return searchKeyHelper(root, key) != nullptr; // bool tells us whether the key was found or not
+}
+
+Node* BST::getMinValueNode(Node* currNode)
+{
+    if (currNode == nullptr)
+    {
+        return nullptr;
+    }
+    while (currNode->left != nullptr)
+    {
+        currNode = currNode->left;
+    }
+    return currNode;
+}
+
+Node* BST::getMaxValueNode(Node* currNode)
+{
+    if (currNode == nullptr)
+    {
+        return nullptr;
+    }
+    while (currNode->right != nullptr)
+    {
+        currNode = currNode->right;
+    }
+    return currNode;
+}
