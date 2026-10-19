@@ -19,10 +19,10 @@ private:
     Node* insertHelper(Node* currNode, int data);
     Node* searchKeyHelper(Node* currNode, int key);
     Node* deleteNodeHelper(Node* currNode, int value);
-    void destroySubTree(Node* currNode);
     Node* getMinValueNode(Node* currNode);
     Node* getMaxValueNode(Node* currNode);
     Node* createNode(int data);
+    void destroySubTree(Node* currNode);
 
 public:
     BST();
@@ -47,6 +47,10 @@ BST::BST(int data)
 BST::~BST()
 {
 }
+
+/*
+ *  INSERT
+*/
 
 Node* BST::insertHelper(Node* currNode, int data)
 {
@@ -74,6 +78,10 @@ void BST::insert(int data)
     root = insertHelper(root, data);
 }
 
+/*
+ * SEARCH
+*/
+
 Node* BST::searchKeyHelper(Node* currNode, int key)
 {
     if ( (currNode == nullptr) || (currNode->key == key) ) // have to do the nullptr check first to ensure that you dont accidentally try and de-ref nullptr to check node->key. Called a short circuit
@@ -94,6 +102,10 @@ bool BST::searchKey(int key)
 {
     return searchKeyHelper(root, key) != nullptr; // bool tells us whether the key was found or not
 }
+
+/*
+ * MIN AND MAX VALUE NODES
+*/
 
 Node* BST::getMinValueNode(Node* currNode)
 {
@@ -119,4 +131,65 @@ Node* BST::getMaxValueNode(Node* currNode)
         currNode = currNode->right;
     }
     return currNode;
+}
+
+/*
+ *  DELETE
+*/
+
+void BST::deleteKey(int key)
+{
+    root = deleteNodeHelper(root, key);
+}
+
+Node* BST::deleteNodeHelper(Node* currNode, int key)
+{
+    if (currNode == nullptr)
+    {
+        return nullptr;
+    }
+    else if (key < currNode->key)
+    {
+        currNode->left = deleteNodeHelper(currNode->left, key);
+    }
+    else if (key > currNode->key)
+    {
+        currNode->right = deleteNodeHelper(currNode->right, key);
+    }
+    else
+    { // we have found the node that we want to delete, now we have to determine the surroundings of the node we want to delete...
+
+        // A. No children
+        if (currNode->left == nullptr && currNode->right == nullptr)
+        {
+            delete currNode;
+            return nullptr;
+        }
+        
+        // B. only right child
+        else if (currNode->left == nullptr)
+        {
+            Node* pRight = currNode->right; // save the right child before deleting the node
+            delete currNode; // delete the desired node
+            return pRight; // replace the spot the desired node lived at in the tree with the right child and its children
+        }
+                
+
+        // C. only left child
+        else if (currNode->right == nullptr)
+        {
+            Node* pLeft = currNode->left; // save the left child before deleting the node
+            delete currNode; // delete the desired node
+            return pLeft; // replace the spot the desired node lived at in the tree with the left child and its children
+        }
+         
+
+        // D. two children
+        // Which child will take the place of the node we delete to keep the BST rule for every node?
+
+
+    }
+    
+    return currNode;
+    
 }
